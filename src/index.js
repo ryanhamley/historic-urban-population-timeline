@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl';
-import './index.css';
 import geojson from '../data/hist-urban-pop.json';
+import './index.css';
+import { playRange } from './range';
 
 const cities = geojson.data.features;
 
@@ -8,8 +9,35 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicnlhbmhhbWxleSIsImEiOiJjaWszbmluaG8wMDAzdTBrc
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
-    center: cities[0].geometry.coordinates,
-    zoom: 9
+    center: [0, 30],
+    zoom: 1
+});
+
+const stops = [
+  {color: [255, 255, 117], value: 0},
+  {color: [252, 219, 88], value: 50000},
+  {color: [246, 187, 63], value: 100000},
+  {color: [240, 157, 41], value: 500000},
+  {color: [188, 98, 26], value: 1000000},
+  {color: [139, 51, 15], value: 10000000},
+  {color: [96, 7, 1], value: 25000000}
+];
+
+const legend = document.getElementById('legend');
+let circleColorInterpolation = ['interpolate', ['linear'], ['get', 'population']];
+
+const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+stops.forEach(stop => {
+  const div = document.createElement('div');
+  const span = document.createElement('span');
+  span.style.backgroundColor = `rgb(${stop.color.join(', ')})`;
+  const text = document.createTextNode(numberWithCommas(stop.value));
+  div.appendChild(span);
+  div.appendChild(text);
+  legend.appendChild(div);
+  circleColorInterpolation.push(stop.value);
+  circleColorInterpolation.push(['rgb'].concat(stop.color));
 });
 
 map.on('load', () => {
@@ -26,20 +54,10 @@ map.on('load', () => {
         'base': 1,
         'stops': [[0, 1], [10, 3], [22, 5]]
       },
-      'circle-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'population'],
-        0, ['rgb', 255, 255, 117],
-        50000, ['rgb', 252, 219, 88],
-        100000, ['rgb', 246, 187, 63],
-        500000, ['rgb', 240, 157, 41],
-        1000000, ['rgb', 188, 98, 26],
-        10000000, ['rgb', 139, 51, 15],
-        25000000, ['rgb', 96, 7, 1]
-      ]
+      'circle-color': circleColorInterpolation
     }
-  })
+  });
+  playRange(map);
 });
 
 console.log('cities', cities);

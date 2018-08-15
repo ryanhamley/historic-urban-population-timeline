@@ -1,7 +1,7 @@
 {
   "name": "historic-urban-population-map",
   "version": "1.0.0",
-  "description": "A visualization of historic urban population data from 3600 BC to 2000 AD",
+  "description": "A visualization of historic urban population data from 3700 BC to 2000 AD",
   "author": "ryanhamley <ryan.hamley@mapbox.com>",
   "license": "MIT",
   "scripts": {
@@ -14,6 +14,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.22.1",
     "webpack": "^4.16.5",
