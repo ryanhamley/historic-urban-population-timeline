@@ -30,11 +30,8 @@ const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",
 
 stops.forEach(stop => {
   const div = document.createElement('div');
-  const span = document.createElement('span');
-  span.style.backgroundColor = `rgb(${stop.color.join(', ')})`;
-  const text = document.createTextNode(numberWithCommas(stop.value));
-  div.appendChild(span);
-  div.appendChild(text);
+  div.classList = 'col h12';
+  div.style.backgroundColor = `rgb(${stop.color.join(', ')})`;
   legend.appendChild(div);
   circleColorInterpolation.push(stop.value);
   circleColorInterpolation.push(['rgb'].concat(stop.color));
@@ -61,10 +58,12 @@ map.on('load', () => {
   new Timeline(map, 'cities');
 });
 
+const properties = ['name', 'population', 'country'];
 map.on('mouseenter', 'cities', (e) => {
   map.getCanvas().style.cursor = 'pointer';
   const props = e.features[0].properties;
-  console.log('props', props);
+  properties.forEach((prop) => {
+    const tr = document.getElementById(prop);
+    tr.innerHTML = prop === 'population' ? numberWithCommas(props[prop]) : props[prop];
+  });
 });
-
-console.log('cities', cities);

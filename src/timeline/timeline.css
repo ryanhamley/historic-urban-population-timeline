@@ -1,0 +1,36 @@
+#counter {
+  opacity: 0.8;
+}
+
+/* .fill-control {
+  background-color: #505050;
+} */
+
+.control-container {
+  padding: 0 0 0 40px;
+}
+
+.playback {
+  background-image: url(play.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(0, 0, 0, 0.75);
+}
+
+.playback.pause {
+  background-image: url(pause.svg);
+}
+
+.playback:hover {
+  background-color: #373737;
+}
+
+.lifted {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
+}
+
+#counter {
+  min-width: 280px;
+}
