@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>Historic Urban Population Map</title>
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.23.0/assembly.min.css" rel="stylesheet">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+  </head>
+  <body>
+    <div class='w360 absolute top-ml left bottom z1 px12 py12-ml'>
+      <div class='flex-parent flex-parent--column viewport-third h-auto-ml hmax-full round-ml shadow-darken10'>
+        <div class='px12 py12 scroll-auto center bg-blue color-white'>
+          <h4>Historic Urban Population</h4>
+          <h2 class="fancy" id="time">3700 BCE</h2>
+          <div class="clearfix space-bottom">
+            <div class="contain control-container round fill-control lifted bg-blue-dark">
+              <button id="play-control" class="button playback play pin-bottomleft round-left keyline-right"></button>
+              <div class="pad1y pad2x contain round-right">
+                <input id="range" class="col12" type="range" min="-3700" max="2000" step="100" value="-3700">
+              </div>
+            </div>
+          </div>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Population</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="name"></td>
+                <td id="population"></td>
+                <td id="country"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <footer id="info" class='px12 py12 bg-blue color-white round-b-ml txt-s'>
+          <div class='round shadow-darken10 px12 py12 txt-s'>
+            <strong class='block mb6'>Population</strong>
+            <div id="legend" class='grid mb6'></div>
+            <div class='grid txt-xs'>
+              <div class='col flex-child--grow align-l'>0</div>
+              <div class='col flex-child--grow align-r'>25,000,000</div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div id="map"></div>
+    <script async defer src="https://api.mapbox.com/mapbox-assembly/v0.23.0/assembly.js"></script>
+  <script type="text/javascript" src="app.bundle.js"></script></body>
+</html>
