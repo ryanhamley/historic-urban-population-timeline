@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import geojson from '../data/hist-urban-pop.json';
 import './index.css';
-import { playRange } from './range';
+import Timeline from './timeline';
 
 const cities = geojson.data.features;
 
@@ -10,7 +10,7 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
     center: [0, 30],
-    zoom: 1
+    zoom: 2
 });
 
 const stops = [
@@ -57,7 +57,14 @@ map.on('load', () => {
       'circle-color': circleColorInterpolation
     }
   });
-  playRange(map);
+
+  new Timeline(map, 'cities');
+});
+
+map.on('mouseenter', 'cities', (e) => {
+  map.getCanvas().style.cursor = 'pointer';
+  const props = e.features[0].properties;
+  console.log('props', props);
 });
 
 console.log('cities', cities);
