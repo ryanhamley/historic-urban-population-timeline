@@ -1,3 +1,5 @@
+View the map at http://ryanhamley.com/historic-urban-population-timeline/dist/
+
 # CITATION
 
 Reba, M. L., F. Reitsma, and K. C. Seto. 2018. Historical Urban Population: 3700 BC - AD 2000. Palisades, NY: NASA Socioeconomic Data and Applications Center (SEDAC). https://doi.org/10.7927/H4ZG6QBX. Accessed August 15, 2018
