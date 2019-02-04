@@ -1,4 +1,4 @@
-View the map at http://ryanhamley.com/historic-urban-population-timeline/dist/
+View the map at http://ryanhamley.github.io/historic-urban-population-timeline/dist/
 
 # CITATION
 
